@@ -1,0 +1,963 @@
+/*===== RESET ==========================================================*/
+/* RESETA */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Reset do site */
+}
+
+ul {
+  list-style: none; /* Tirar pontinhos do ul */
+}
+
+a {
+  text-decoration: none; /* Retirar decorações desnecessarias da tag a(beautysalon.) */
+}
+
+img {
+  /* Seleciona todas as imagens */
+  width: 100%;
+  height: 100%;
+  /* Aqui ele deixa a largura e a altura da imagem relativa, e não fixa(Reponsivo) */
+}
+
+/*===== VARIABLES(VARIAVEIS) ===========================================*/
+
+/*
+Variaveis se escreve assim, --(e o nome aqui) 
+E para usa-la basta colocar, var(--(o nome da variavei aqui)
+*/
+:root {
+  /*Local onde guarda as variaveis*/
+  --header-height: 4.5rem;
+  /* colors */
+  --hue: 159;
+  /* HSL color mode */
+  --base-color: hsl(var(--hue) 36% 57%);
+  --base-color-second: hsl(var(--hue) 65% 88%);
+  --base-color-alt: hsl(var(--hue) 57% 53%);
+  --title-color: hsl(var(--hue) 41% 10%);
+  --text-color: hsl(0 0% 46%);
+  --text-color-light: hsl(0 0% 98%);
+  --body-color: hsl(0 0% 98%);
+
+  /* fonts */
+
+  --title-font-size: 1.875rem;
+  --subtitle-font-size: 1rem;
+
+  --title-font: 'Poppins', sans-serif;
+  --body-font: 'DM Sans', sans-serif;
+}
+
+/*===== BASE ===========================================================*/
+
+html {
+  scroll-behavior: smooth; /* Aqui ele deixar a rolagem automatica mais suave, ao invés dela simplesmente teleporta */
+}
+
+body {
+  font: 400 1rem var(--body-font);
+  color: var(--text-color);
+  background: var(--body-color);
+  -webkit-font-smoothing: antialiased; /* Aqui ele aplica uma levesa aos textos em navegadores que tem o seu suporte. */
+}
+
+.title {
+  font: 700 var(--title-font-size) var(--title-font);
+  color: var(--title-color);
+  -webkit-font-smoothing: auto; /* Aqui ele aplica uma levesa aos textos em navegadores que tem o seu suporte. */
+}
+.button {
+  /* Personalizando o butão */
+  background-color: var(--base-color); /* Cor do background */
+  color: var(--text-color-light); /* cor do texto */
+  /* display padrão e inline( não vai receber altura e nem largura), têm que mudar. O inliner limita de acordo com o conteúdo, nós colocamo  inline-flex pois o flex libera algumas tag como a align-items(para centralizar os itens no meio) */
+  display: inline-flex;
+  align-items: center;
+  height: 3.5rem;
+  padding: 2rem; /* padding é um espaço que é adicionado nas laterais, no topo, em baixo e etc. */
+  border-radius: 0.25rem; /* É o quanto curvado vai ser as bordas do box */
+  font: 500 1rem var(--body-font);
+  transition: background 0.3s; /* Ele colocar uma transição para cada acão que houver nesse conteúdo, exemplo, o hover promove uma ação ao passar o mouse em cima */
+}
+
+.button:hover {
+  /* Oque significa, quando o mouse estiver posicionado em cima */
+  background: var(--base-color-alt);
+}
+
+.divider-1 {
+  height: 1px;
+  /* Isso aqui é aquela linha que separa alguns conteúdos em forma de degrade, a geometria, ou seja, quantos graus a cor vai rodar, o prencimento da primeira cor e da segunda logo depois, sendo que cada uma vem do 0% a 100% em outra. */
+  background: linear-gradient(
+    270deg,
+    hsla(var(--hue), 36%, 57%, 1),
+    hsla(var(--hue), 65%, 88%, 0.34)
+      /* O hue serve para nos ajudar na mudança de cor no site. */
+  );
+}
+
+/*===== LAYOUT =========================================================*/
+.container {
+  margin-left: 1.5rem; /*largura minima para o conteúdo comecar na esquerda */
+  margin-right: 1.5rem; /*largura minima para o conteúdo comecar na direita */
+}
+
+.grid {
+  display: grid; /* Habilitar funcionalidades novas no css */
+  gap: 4rem; /*Ele da um espaçamento vertical, que você escolhe, em questão ao ultimo elemento */
+}
+
+.section {
+  padding: calc(5rem + var(--header-height)) 0; /*Estudar*/
+}
+
+.section .title {
+  margin-bottom: 1rem;
+}
+
+.section .subtitle {
+  font-size: var(--subtitle-font-size);
+}
+
+.section header strong {
+  color: var(--base-color);
+}
+
+#header {
+  border-bottom: 1px solid #f9f9f9; /*Estudar*/
+  margin-bottom: 2rem; /*Estudar*/
+  display: flex; /* Como já disse, o flex se adpta e permite alterações, neste caso ele pegou os 4 ponto que estava muito longe e jogo para mais perto */
+  width: 100%; /* Limitar a rolagem */
+  position: fixed; /* Travar a rolagem*/
+  z-index: 100;
+  top: 0;
+  left: 0;
+  background-color: var(--body-color);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2); /* Horizontal, vertical, blur, espalhamento na página e cor */
+}
+
+#header.scroll {
+  background: var(--base-color);
+  transition: 0.5s;
+}
+
+
+
+header.scroll .logo span {
+  color: white;
+  transition: 0.5s;
+}
+
+header.scroll .icon-menu {
+  color: white;
+  transition: 0.5s;
+}
+
+main {
+  margin-top: calc(
+    var(--header-height) + 2rem
+  ); /* Aqui é uma função que faz calculo. */
+}
+
+/*===== LOGO ===========================================================*/
+
+.logo {
+  font: 700 1.875rem var(--title-font);
+  color: var(--title-color);
+}
+.logo span {
+  color: var(--base-color);
+}
+
+.logo-alt span {
+  color: var(--body-color);
+}
+
+/*===== NAVIGATION =====================================================*/
+
+nav {
+  height: var(--header-height); /* Altura do id de tag selecionado  */
+  display: flex; /* Estudar */
+  align-items: center; /* Alinhar os items, estudar posições */
+  justify-content: space-between; /* Aqui ele especifica para qual lado o texto vai ser jogado, igual a quando selecionamos um lado para o texto no wordpress */
+  width: 100%; /* Limitar a rolagem */
+}
+
+nav ul li {
+  text-align: center;
+}
+
+nav .menu {
+  opacity: 0; /* Opacidade, nivel de cor do objeto */
+  visibility: hidden; /* Visibilade e ações que podem ser dada ao elemento(Hidden Desabilita) */
+  top: -20rem;
+  transition: 0.2s;
+}
+
+nav .menu ul {
+  display: none;
+}
+
+/* Mostrar o Menu */
+nav.show .menu {
+  opacity: 1;
+  visibility: visible;
+
+  background: var(--body-color);
+  height: 100vh;
+  width: 100vw;
+
+  position: fixed; /* Deixa o elemento fixo, idependetemente se você estiver rolando-o */
+  top: 0rem;
+  left: 0;
+
+  display: grid;
+  place-content: center; /* Ele joga os elementos no centro */
+}
+
+nav.show .menu ul {
+  display: grid;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+  color: var(--base-color);
+}
+
+nav ul li a::after {
+  /* O after significa, fazer outra ação após o anterior, atrevés da ação que você defini, no meu caso é hover, fazer algo a mais deposi de passar o mouse em cima */
+  content: '';
+  width: 0;
+  height: 2px;
+  background: var(--base-color);
+
+  position: absolute;
+  left: 0;
+  bottom: -1.5rem;
+
+  transition: width 0.2s;
+}
+
+nav ul li a:hover::after,
+nav ul li a.active::after {
+  width: 100%;
+}
+
+nav ul li a {
+  transition: color 0.2s;
+  position: relative;
+}
+
+nav.show ul.grid {
+  gap: 4rem;
+}
+
+/* toggle menu */
+.toggle {
+  color: var(--base-color);
+  font-size: 1.5rem;
+  cursor: pointer; /* Para quando a pessoa passar com o mouse em cima ela saber que pode clicar. */
+}
+nav .icon-close {
+  visibility: hidden;
+  opacity: 0;
+
+  position: fixed;
+  right: 1.5rem;
+  top: -1.5rem;
+
+  transition: 0.2s;
+}
+
+nav.show div.icon-close {
+  visibility: visible;
+  opacity: 1;
+  top: 1.5rem;
+}
+
+/* Mostrar o Menu !--- */
+
+/*===== HOME ===========================================================*/
+#home {
+  overflow: hidden; /* Aqui ele limitou a área que os conteúdos podem chegar, neste caso so vai de acordo com a nossa tela, isso por conta das configurações que a gente fez no inicio */
+  max-width: 100%; /* Aqui é para e limitar a rolagem a 100%, e nõa passar disto pelos lados */
+}
+
+#home .container {
+  margin: 0; /* Zera a home, o espacamento lateral é removido, só com essa configuração */
+}
+
+/*---------Criando a cor de fundo da imagem-------------------------*/
+
+#home .image {
+  position: relative; /* Neste caso eu usei a lógica para pegar o before e copiar a posição da imagem */
+}
+
+#home .image::before {
+  /* Before significa que ele esta criando uma copia da imagem selcionada fantasma no html e implementando no site */
+  content: ''; /* É necessário um conteúdo dentro para ele funcionar */
+  height: 100%;
+  width: 100%;
+  background: var(--base-color-second);
+  position: absolute;
+  top: -16.8%;
+  left: 16.7%;
+  z-index: 0; /* o z-index deixa a copia por cima ou por baixo da imagem ou tag original setada, 0 por baixo e 1 por cima. */
+}
+#home .image img {
+  /* Pegue na classe home o id image e selecione a imagem daquele local */
+  position: relative; /* Habilita novas funcionalidades para o css, igual ao grid, mas tudo relacionado a posição */
+  right: 2.938rem; /* Empurrei a imagem a 47px para a direita */
+}
+
+#home .image img,
+#home .image::before {
+  border-radius: 0.25rem;
+}
+
+#home .text {
+  /* Selecionei o texto desejado e dei uma margem de espaço lateral */
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+  text-align: center; /* Meche nas posições das linhas */
+}
+
+#home .text h1 {
+  margin-bottom: 1rem;
+}
+
+#home .text p {
+  margin-bottom: 2rem;
+}
+
+/*===== ABOUT ==========================================================*/
+
+#about .container {
+  margin: 0; /* Zera a home, o espacamento lateral é removido, só com essa configuração */
+}
+
+/*---------Criando a cor de fundo da imagem-------------------------*/
+
+#about .image {
+  position: relative;
+}
+
+#about .image::before {
+  content: '';
+  height: 100%;
+  width: 100%;
+  background: var(--base-color-second);
+  position: absolute;
+  top: -8.3%;
+  right: 33%;
+  z-index: 0;
+}
+#about .image img {
+  position: relative;
+}
+
+#about .image img,
+#about .image::before {
+  border-radius: 0.25rem;
+}
+
+#about .text {
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+  position: relative;
+}
+
+#about {
+  background: white;
+}
+
+.divider-2 {
+  height: 1px;
+  /* Isso aqui é aquela linha que separa alguns conteúdos em forma de degrade, a geometria, ou seja, quantos graus a cor vai rodar, o prencimento da primeira cor e da segunda logo depois, sendo que cada uma vem do 0% a 100% em outra. */
+  background: linear-gradient(
+    270deg,
+    hsla(var(--hue), 65%, 88%, 0.34),
+    hsla(var(--hue), 36%, 57%, 1)
+      /* O hue serve para nos ajudar na mudança de cor no site. */
+  );
+}
+
+/*===== SERVICES =======================================================*/
+
+.cards.grid {
+  gap: 1.5rem;
+}
+
+.card {
+  padding: 3.625rem 2rem;
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.08);
+  border-bottom: 0.25rem solid var(--base-color);
+  border-radius: 0.25rem 0.25rem 0 0;
+  text-align: center;
+}
+
+.card i {
+  display: block;
+  margin-bottom: 1.5rem;
+  font-size: 4.688rem;
+  color: var(--base-color);
+}
+
+.card title {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+/*===== TESTIMONIALS ===================================================*/
+
+#testimonials {
+  background: white;
+}
+
+#testimonials .container {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+#testimonials header {
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+  margin-bottom: 0;
+}
+
+#testimonials blockquote {
+  padding: 2rem;
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.08);
+  border-radius: 0.25rem;
+}
+
+#testimonials blockquote p {
+  position: relative;
+  text-indent: 1.875rem;
+  margin-bottom: 1.5rem;
+  color: var(--title-color);
+}
+
+#testimonials blockquote p span {
+  font: 700 2.5rem serif;
+  position: absolute; /* A position cria um contexto acima, que deixa ele acima dos outros elementos no site */
+  top: -0.375rem;
+  left: -1.875rem;
+  color: var(--base-color);
+}
+
+#testimonials cite {
+  display: flex;
+  align-items: center;
+  font-style: normal;
+}
+
+#testimonials cite img {
+  width: 2rem;
+  height: 2rem;
+  object-fit: cover;
+  clip-path: circle();
+  margin-right: 0.5rem;
+}
+
+/* swiper */
+
+.swiper-slide {
+  height: auto;
+  padding: 4rem 1rem;
+}
+
+.swiper-pagination-bullet-active {
+  background: var(--base-color);
+}
+
+/*===== CONTACTS =======================================================*/
+#contact{
+  display: grid;
+  gap: 4rem;
+}
+
+#contact .text p {
+  margin-bottom: 2rem;
+}
+
+#contact .button i,
+#contact ul li i {
+  font-size: 1.5rem;
+  margin-right: 0.625rem;
+}
+
+#contact ul.grid {
+  gap: 2rem;
+}
+
+#contact ul li{
+  display: flex;
+  align-items: center;
+}
+
+#contact ul li i {
+  color: var(--base-color);
+}
+
+/*===== FOOTER =========================================================*/
+
+footer{
+  background: var(--base-color);
+}
+
+footer.section {
+  padding: 4rem 0;
+}
+
+footer .logo { /* O a não permite o margin=bottom, normalmente temos que colocar o display em inline-block para ele funcionar */
+  display: inline-block;
+  margin-bottom: 2.5rem; /* Use isso aqui para dar um espaço entre os elementos dentro de uma seção, footer e etc, UNICAMENTE */
+}
+
+footer .text-footer{
+  margin-left: 2rem;
+}
+
+footer .brand p{
+  color: var(--text-color-light);
+}
+
+footer i {
+  font-size: 1.5rem;
+  color: var(--text-color-light);
+}
+
+footer .social {
+  grid-auto-flow: column;
+  width: fit-content;
+  margin-left: 2rem;
+}
+
+footer .social a{
+  transition: 0.3s;
+  display: inline-block;
+}
+
+
+footer .social a:hover {
+  transform: translateY(-2px);
+}
+/* Back to top */
+
+.back-to-top {
+  background: var(--base-color);
+  color: var(--text-color-light);
+
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+
+  padding: 0.5rem;
+  clip-path: circle();
+
+  font-size: 1rem;
+  line-height: 0;
+
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.3s;
+
+  transform: translateY(100%); /* Altera a posição Y (Cima e baixo), apara um valor desejado(translate) e o transform é uma transformação no seu elemento escolhido. */
+}
+
+.back-to-top.show {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0%);
+}
+
+/* Responsivo */
+
+/*================= MEDIA QUERIES =================*/
+/* extra large devices: 1200 > */
+/* medium devices: 767 >: Tamanho de tlabets para baixo, JA FOI FEITO */
+
+@media (min-width: 767px) {
+  :root {
+    --title-font-size: 2.25rem;
+    --subtitle-font-size: 1.125rem;
+  }
+
+  /* Home */
+  #home .container {
+    grid-auto-flow: column;
+    justify-content: space-between;
+    margin: 0 auto;
+  }
+
+  #home .image {
+    order: 1;
+  }
+
+  #home .text {
+    order: 0;
+    max-width: 24rem; /* Tamanho máximo */
+    text-align: left;
+  }
+
+  /* About */
+
+  #about {
+    font-size: var(--subtitle-font-size);
+    align-items: center;
+  }
+
+  #about .container {
+    margin: 0 auto;
+  }
+
+  #about .image img, #about .image::before {
+    width: 100%;
+    height: 100%;
+  }
+
+
+  /* Footer */
+
+  footer .container {
+    grid-auto-flow: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+/* large devices: 992 > Tamanho de um tablet*/
+
+@media (min-width: 992px){
+  :root {
+    --title-font-size: 2.25rem;
+    --subtitle-font-size: 1.125rem;
+  }
+  #home .container {
+    grid-auto-flow: column;
+    justify-content: space-between;
+    margin: 0 auto;
+  }
+
+  #home .image {
+    order: 1;
+  
+  }
+
+  #home .text {
+    order: 0;
+    max-width: 24rem; /* Tamanho máximo */
+    text-align: left;
+  }
+
+  /* ABOUT */
+  #about {
+    font-size: var(--subtitle-font-size);
+    align-items: center;
+  }
+
+  #about .container {
+    margin: 0 auto;
+    grid-auto-flow: column;
+  }
+
+  #about .image img, #about .image::before {
+    margin-left: 3rem;
+    width: 24rem;
+    height: 24rem;
+  }
+
+  /* footer */
+
+  footer.section{
+    padding: 3.75rem 0;
+  }
+
+  footer .container {
+    grid-auto-flow: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  footer .logo {
+    font-size: var(--title-font-size);
+  }
+  
+}
+
+
+/* large devices: 1023 > */
+@media (min-width: 1023px) {
+  :root {
+    --title-font-size: 1.875rem;
+    --subtitle-font-size: 1.2rem;
+  }
+
+  #header.scroll .logo span {
+    color: var(--base-color);
+  }
+
+  #header.scroll {
+    background: var(--body-color);
+  }
+  /* reusable classes */
+  .container {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .section{
+    padding: 9rem 0; /* 10 rem em cima é baixo e 0 nas laterais */
+  }
+
+  .section header, 
+  #testimonials header{
+    max-width: 32.5rem;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .button {
+    height: 3.125rem;
+    width: 13.625rem;
+  }
+
+  /* Navigation */
+  nav .menu {
+    opacity: 1;
+    visibility: visible;
+    top: 0;
+  }
+
+  nav .menu ul{
+    display: flex; /* Ele desploqueia o menu e o flex faz com que eles fiquem um do lado do outro */
+    gap: 1.5rem;
+  }
+
+  nav .menu ul li a.title{
+     font: 400 1rem var(--body-font);
+     font-weight: bold;
+  }
+
+
+  nav .icon-menu{
+    display: none;
+  }
+
+  /* main layout */
+  main {
+    margin-top: var(--header-height);
+  }
+  /* HOME */
+
+  #home .container {
+    grid-auto-flow: column;
+    justify-content: space-between;
+    margin: 0 auto;
+  }
+
+  #home .image {
+    order: 1;
+  
+  }
+
+  #home .text {
+    order: 0;
+    max-width: 24rem; /* Tamanho máximo */
+    text-align: left;
+  }
+
+  /* about */
+
+  #about {
+    font-size: var(--subtitle-font-size);
+    align-items: center;
+  }
+
+  #about .container {
+    margin: 0 auto;
+    grid-auto-flow: column;
+  }
+  #about .image img, #about .image::before {
+    width: 24rem;
+    height: 24rem;
+  }
+
+  /* services */
+  .cards {
+    grid-template-columns: 1fr 1fr 1fr; /* Isso significa que é para colocar cada elemento um ao lado do outro com uma ordem de fração, ou seja, se uma fração passar a se 2fr, ele sera maior. Caso queira faze em colunas basta remover uma fração(exemplo: 2fr) */
+    
+  }
+
+  .card {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+
+  /* testimonials */
+
+  #testimonials .container {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* contact */
+
+  #contact .container {
+    grid-auto-flow: column;
+    align-items: center;
+  }
+  #contact .text {
+    margin-right: 20.25rem;
+    margin-left: 2rem;
+  }
+
+  /* footer  */
+  footer.section{
+    padding: 3.75rem 0;
+  }
+
+  footer .container {
+    grid-auto-flow: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  footer .logo {
+    font-size: 2.25rem;
+  }
+
+}
+
+@media (min-width: 1200px){
+
+  /* reusable classes */
+  .container {
+    max-width: 1120px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .section{
+    padding: 10rem 0; /* 10 rem em cima é baixo e 0 nas laterais */
+  }
+
+  .section header, 
+  #testimonials header{
+    max-width: 32.5rem;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .button {
+    height: 3.125rem;
+    width: 13.625rem;
+  }
+
+  /* Navigation */
+  nav .menu {
+    opacity: 1;
+    visibility: visible;
+    top: 0;
+  }
+
+  nav .menu ul{
+    display: flex; /* Ele desploqueia o menu e o flex faz com que eles fiquem um do lado do outro */
+    gap: 2rem;
+  }
+
+  nav .menu ul li a.title{
+     font: 400 1rem var(--body-font);
+     font-weight: bold;
+  }
+
+
+  nav .icon-menu{
+    display: none;
+  }
+
+  /* main layout */
+  main {
+    margin-top: var(--header-height);
+  }
+  /* HOME */
+
+  #home .container {
+    grid-auto-flow: column;
+    justify-content: space-between;
+    margin: 0 auto;
+  }
+
+  #home .image {
+    order: 1;
+  }
+
+  #home .text {
+    order: 0;
+    max-width: 24rem; /* Tamanho máximo */
+    text-align: left;
+  }
+
+  /* about */
+
+  #about .container {
+    margin: 0 auto;
+    grid-auto-flow: column;
+  }
+
+  /* services */
+  .cards {
+    grid-template-columns: 1fr 1fr 1fr; /* Isso significa que é para colocar cada elemento um ao lado do outro com uma ordem de fração, ou seja, se uma fração passar a se 2fr, ele sera maior. Caso queira faze em colunas basta remover uma fração(exemplo: 2fr) */
+  }
+
+  .card {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .card {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+
+  /* testimonials */
+
+  #testimonials .container {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* contact */
+
+  #contact .container {
+    grid-auto-flow: column;
+    align-items: center;
+  }
+  #contact .text {
+    margin-right: 25.25rem;
+  }
+
+  /* footer  */
+  footer.section{
+    padding: 3.75rem 0;
+  }
+
+  footer .container {
+    grid-auto-flow: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  footer .logo {
+    font-size: 2.25rem;
+  }
+
+}
